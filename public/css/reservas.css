@@ -1,0 +1,69 @@
+/* Estilos para las opciones principales de reserva */
+.reservas-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.option-card {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+}
+
+.option-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    color: #468189;
+}
+
+.option-title {
+    font-family: "Archivo Black", sans-serif;
+    font-size: 24px;
+    color: #468189;
+    margin-bottom: 15px;
+}
+
+.option-description {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.option-btn {
+    background-color: #77ACA2;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.option-btn:hover {
+    background-color: #468189;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .reservas-options {
+        grid-template-columns: 1fr;
+    }
+}

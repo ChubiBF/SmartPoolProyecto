@@ -10,6 +10,65 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservaController extends Controller
 {
+    public function clienteIndex()
+    {
+        try {
+            // Obtener reservas activas del cliente si está autenticado
+            $reservasActivas = [];
+            if (Auth::check()) {
+                $cliente = DB::table('cliente')
+                    ->where('ID_Usuario', Auth::id())
+                    ->first();
+
+                if ($cliente) {
+                    $reservasActivas = DB::table('reserva as r')
+                        ->select(
+                            'r.ID_reserva',
+                            'r.Fecha_reserva',
+                            'r.Hora_inicio',
+                            'r.Hora_fin',
+                            'r.Adelanto',
+                            'r.Tipo_reserva',
+                            'p.ID_Piscina',
+                            'p.Capacidad'
+                        )
+                        ->join('piscina as p', 'r.ID_Piscina', '=', 'p.ID_Piscina')
+                        ->where('r.ID_Cliente', $cliente->ID_Cliente)
+                        ->where('r.Fecha_reserva', '>=', Carbon::today())
+                        ->orderBy('r.Fecha_reserva', 'asc')
+                        ->get();
+                }
+            }
+
+            return view('cliente.reservas-cliente', compact('reservasActivas'));
+
+        } catch (\Exception $e) {
+            Log::error('Error en ReservaController@clienteIndex: ' . $e->getMessage());
+            return back()->with('error', 'Error al cargar la página de reservas');
+        }
+    }
+
+    public function disponibilidad()
+    {
+        try {
+            // Obtener todas las piscinas
+            $piscinas = DB::table('piscina')->get();
+
+            // Obtener las reservas de la semana actual
+            $fechaInicio = Carbon::now()->startOfWeek();
+            $fechaFin = Carbon::now()->endOfWeek();
+
+            $reservas = DB::table('reserva')
+                ->whereBetween('Fecha_reserva', [$fechaInicio, $fechaFin])
+                ->get();
+
+            return view('reservas.disponibilidad', compact('piscinas', 'reservas'));
+
+        } catch (\Exception $e) {
+            Log::error('Error en ReservaController@disponibilidad: ' . $e->getMessage());
+            return back()->with('error', 'Error al cargar la disponibilidad');
+        }
+    }
     public function index()
     {
         try {
@@ -92,13 +151,13 @@ class ReservaController extends Controller
             $existeReserva = DB::table('reserva')
                 ->where('Fecha_reserva', $request->fecha)
                 ->where('ID_Piscina', $request->piscina)
-                ->where(function($query) use ($request) {
+                ->where(function ($query) use ($request) {
                     $query->whereBetween('Hora_inicio', [$request->hora_inicio, $request->hora_fin])
-                          ->orWhereBetween('Hora_fin', [$request->hora_inicio, $request->hora_fin])
-                          ->orWhere(function($q) use ($request) {
-                              $q->where('Hora_inicio', '<=', $request->hora_inicio)
+                        ->orWhereBetween('Hora_fin', [$request->hora_inicio, $request->hora_fin])
+                        ->orWhere(function ($q) use ($request) {
+                            $q->where('Hora_inicio', '<=', $request->hora_inicio)
                                 ->where('Hora_fin', '>=', $request->hora_fin);
-                          });
+                        });
                 })->exists();
 
             if ($existeReserva) {
@@ -176,13 +235,13 @@ class ReservaController extends Controller
                 ->where('Fecha_reserva', $request->fecha)
                 ->where('ID_Piscina', $request->piscina)
                 ->where('ID_reserva', '!=', $id)
-                ->where(function($query) use ($request) {
+                ->where(function ($query) use ($request) {
                     $query->whereBetween('Hora_inicio', [$request->hora_inicio, $request->hora_fin])
-                          ->orWhereBetween('Hora_fin', [$request->hora_inicio, $request->hora_fin])
-                          ->orWhere(function($q) use ($request) {
-                              $q->where('Hora_inicio', '<=', $request->hora_inicio)
+                        ->orWhereBetween('Hora_fin', [$request->hora_inicio, $request->hora_fin])
+                        ->orWhere(function ($q) use ($request) {
+                            $q->where('Hora_inicio', '<=', $request->hora_inicio)
                                 ->where('Hora_fin', '>=', $request->hora_fin);
-                          });
+                        });
                 })->exists();
 
             if ($existeReserva) {

@@ -53,4 +53,18 @@ class Usuario extends Authenticatable
     {
         return $this->hasOne(Empleado::class, 'ID_Usuario', 'ID_Usuario');
     }
+    public function generateTwoFactorCode()
+    {
+        $this->two_factor_code = str_pad((string)random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+        $this->two_factor_expires_at = now()->addMinutes(10);
+        $this->save();
+    }
+    
+    public function resetTwoFactorCode()
+    {
+        $this->two_factor_code = null;
+        $this->two_factor_expires_at = null;
+        $this->save();
+    }
+    
 }
