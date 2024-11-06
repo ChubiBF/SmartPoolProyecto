@@ -36,7 +36,7 @@ SmartPool es un sistema de gestión integral para piscinas que permite administr
 - Git para control de versiones
 
 ## Diagrama de Base de Datos
-![Diagrama de Base de Datos](ruta_a_tu_imagen.png)
+![Diagrama de Base de Datos](diagramaBase.png)
 
 ## Requerimientos del Sistema
 - PHP >= 8.2
