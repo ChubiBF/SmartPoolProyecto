@@ -22,7 +22,7 @@ SmartPool es un sistema de gestión integral para piscinas que permite administr
 ### Backend
 - PHP 8.2
 - Laravel Framework
-- MySQL/MariaDB
+- MySQL
 
 ### Frontend
 - HTML5
@@ -42,6 +42,6 @@ SmartPool es un sistema de gestión integral para piscinas que permite administr
 - PHP >= 8.2
 - Composer
 - Node.js >= 14
-- MySQL/MariaDB
-- Servidor web (Apache/Nginx)
+- MySQL
+- Servidor web (Apache)
 
