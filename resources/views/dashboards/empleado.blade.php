@@ -28,13 +28,13 @@
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-xl font-semibold mb-4">Gestionar Reservas</h2>
                 <p class="mb-4">Ver, confirmar, modificar o cancelar reservas.</p>
-                <a href="#" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Gestionar Reservas</a>
+                <a href="{{ route('empleado.reservas') }}" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Gestionar Reservas</a>
             </div>
             
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-xl font-semibold mb-4">Ventas y Compras</h2>
                 <p class="mb-4">Registrar y visualizar ventas y compras diarias.</p>
-                <a href="#" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Ver Transacciones</a>
+                <a href="{{ route('ventas.index') }}" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Ver Transacciones</a>
             </div>
             
             <div class="bg-white p-6 rounded-lg shadow-md">

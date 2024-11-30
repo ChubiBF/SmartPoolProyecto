@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bitter:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Yellowtail&display=swap');
+/* Estilos generales */
+body {
+    font-family: "Bitter", serif;
+    margin: 0;
+    background-image: url('https://images.unsplash.com/photo-1515248646606-f64156a1e55a?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGlwaG9uZSUyMGZvbmRvJTIwZGUlMjBwYW50YWxsYSUyMG1hcnxlbnwwfHwwfHx8MA%3D%3D');
+    background-size: cover;
+    border-radius: 10px;
+    transition: margin-left 0.3s ease; /* Transición suave cuando el menú cambia */
+}
+
+/* Botón para abrir el menú */
+.menu-btn {
+    font-size: 25px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #468189;
+    color: white;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+/* Menú lateral desplegable */
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #468189; /* Azul oscuro */
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -220px; /* Comienza oculto fuera de la pantalla */
+    z-index: 1;
+    transition: left 0.3s ease;
+}
+
+/* Cuando el menú está abierto */
+.menu.open {
+    left: 0; /* Mostrar el menú */
+}
+
+/* Estilos para los enlaces del menú */
+.menu ul {
+    padding: 50px 0; /* Asegura que el contenido esté debajo del botón */
+}
+
+.menu li {
+    display: block;
+}
+
+.menu li a {
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.menu li a:hover {
+    background-color: #9DBEBB; /* Celeste */
+}
+
+/* Contenido principal */
+.content{
+    transition: margin-left 0.3s ease; /* Transición suave cuando cambia el margen */
+    flex: 1; /* Permitir que el contenido use todo el espacio disponible */
+}
+
+/* Mover el contenido solo cuando el menú esté abierto */
+body.menu-open .content{
+    margin-left: 200px; /* El contenido se mueve a la derecha cuando el menú está abierto */
+}
+
+/* Carrusel de imágenes */
+.carousel {
+    position: relative; /* Necesario para los botones */
+    overflow: hidden;
+    width: 70%; /* Ajustado para reducir un poco el ancho horizontalmente */
+    height: 500px; /* Incrementado para aumentar verticalmente */
+    margin-bottom: 20px;
+    margin: 0 auto; /* Centra el carrusel horizontalmente */
+}
+
+.contenedor-titulo_ini {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el contenido */
+    justify-content: center; /* Centra el contenido horizontalmente */
+}
+
+.Titulo_pag {
+    font-size: 70px;
+    font-family: "Yellowtail", cursive;
+    text-align: center;
+    margin-left: 20px; /* Espacio entre la imagen y el título */
+}
+
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%; /* Asegura que la altura de las imágenes ocupe todo el contenedor */
+}
+
+.slide img {
+    width: 100%;
+    height: 100%; /* Ajusta las imágenes para que llenen el contenedor */
+    object-fit: cover; /* Mantiene la relación de aspecto y recorta si es necesario */
+}
+
+
+/* Estilos para los botones de navegación */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semi-transparente */
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 10px;
+    z-index: 2;
+    border-radius: 50%; /* Botones redondeados */
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Información sobre la piscina */
+.info {
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Estilos para la sección principal */
+.principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.container-principal {
+    text-align: center;
+    max-width: 600px; /* Asegura que no ocupe todo el ancho */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Estilos para el título */
+.heading-principal h1 {
+    font-size: 40px;
+    font-family: "Archivo Black", sans-serif;
+    color: #468189; 
+    margin-bottom: 20px;
+}
+
+/* Estilos para el texto descriptivo */
+.description-principal p {
+    font-size: 15px; /* Tamaño pequeño */
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilos para el botón */
+.login-button .btn {
+    font-size: 16px;
+    background-color: #77ACA2;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.login-button .btn:hover {
+    background-color: #468189; /* Color más oscuro al pasar el ratón */
+    color: white;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .menu {
+        width: 100%; /* Menú ocupa el 100% en pantallas pequeñas */
+        left: -100%; /* Comienza oculto fuera de la pantalla */
+    }
+    body.menu-open .content {
+        margin-left: 0; /* El contenido no se desplaza cuando el menú está abierto */
+    }
+    body.menu-open .menu {
+        left: 0; /* Mostrar el menú en pantallas pequeñas */
+    }
+}
+
+/* Sección de características */
+.features {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 350px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 570px;
+}
+
+.feature-item img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-bottom: 3px solid #00bfff; /* Borde inferior turquesa */
+}
+
+.feature-text {
+    padding: 5px;
+}
+
+.feature-text h2 {
+    font-size: 25px;
+    color: #3a406f;
+    margin-bottom: 15px;
+    font-family: "Archivo Black", sans-serif;
+}
+
+.feature-text p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.feature-item .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.feature-item .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el mapa */
+.map-container {
+    display: flex;
+    justify-content: center; /* Centra el mapa horizontalmente */
+    width: 50%;
+    height: 400px; /* Altura del mapa */
+    margin: 20px 0; /* Margen superior e inferior */
+}
+
+.map-section h2{
+    font-family: "Archivo Black", sans-serif;
+}
+
+.wave-section {
+    position: relative;
+    width: 100%;
+    height: 150px; /* Ajusta según lo que necesites */
+    overflow: hidden;
+}
+
+.wave-section svg {
+    position: absolute;
+    top: 0; /* Coloca la ola en la parte superior */
+    left: 0;
+    display: block;
+    width: 100%; /* Ocupa el 100% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción de altura según el ancho */
+}
+
+.Mapa-fondo{
+    background-color: white;
+}
+
+.menu ul li span,
+.menu ul li button {
+    color: currentColor;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.menu ul li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    width: 100%;
+    text-align: left;
+}
+
+.menu ul li span svg,
+.menu ul li button svg {
+    margin-right: 8px;
+}
+
+.menu ul li:hover span,
+.menu ul li:hover button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Si estás usando fondo claro en el menú */
+.menu.light ul li:hover span,
+.menu.light ul li:hover button {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #000;
+}
